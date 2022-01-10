@@ -1,0 +1,24 @@
+type Media @key(fields: "id") {
+  id: ID!
+
+  """
+  Content type of the media
+  """
+  contentType: MediaType!
+
+  """
+  Content of the media base64 encoded
+  """
+  base64Media: String!
+
+  """
+  Link to download media from the server
+  """
+  link: String!
+}
+
+enum MediaType {
+  Image
+  Video
+  PDF
+}

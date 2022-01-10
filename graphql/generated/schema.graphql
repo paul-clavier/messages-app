@@ -1,0 +1,44 @@
+type Chat {
+  admins: [User!]!
+  id: ID!
+  members: [User!]!
+  messages: [Message!]
+}
+
+type Media {
+  """Content of the media base64 encoded"""
+  base64Media: String!
+
+  """Content type of the media"""
+  contentType: MediaType!
+  id: ID!
+
+  """Link to download media from the server"""
+  link: String!
+}
+
+enum MediaType {
+  Image
+  PDF
+  Video
+}
+
+type Message {
+  author: User!
+  chat: Chat!
+  content: String!
+  id: ID!
+  media: [Media!]
+}
+
+type Query {
+  chats: [Chat]!
+}
+
+type User {
+  chats: [Chat]
+  id: ID!
+  messages: [Message]
+  phoneNumber: String!
+  pseudo: String!
+}

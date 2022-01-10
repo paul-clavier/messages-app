@@ -1,0 +1,10 @@
+type Chat @key(fields: "id") {
+  id: ID!
+  members: [User!]!
+  admins: [User!]!
+  messages: [Message!]
+}
+
+extend type User {
+  chats: [Chat]
+}

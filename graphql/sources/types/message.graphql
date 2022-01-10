@@ -1,0 +1,15 @@
+type Message @key(fields: "id") {
+  id: ID!
+  author: User!
+  chat: Chat!
+  content: String!
+  media: [Media!]
+}
+
+extend type User {
+  messages: [Message]
+}
+
+extend type Chat {
+  messages: [Message]
+}
