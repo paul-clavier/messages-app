@@ -4,6 +4,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -32,10 +33,11 @@ export type Media = {
   link: Scalars['String'];
 };
 
-export type MediaType =
-  | 'Image'
-  | 'PDF'
-  | 'Video';
+export enum MediaType {
+  Image = 'Image',
+  Pdf = 'PDF',
+  Video = 'Video'
+}
 
 export type Message = {
   __typename?: 'Message';
@@ -48,7 +50,12 @@ export type Message = {
 
 export type Query = {
   __typename?: 'Query';
-  chats: Array<Maybe<Chat>>;
+  chat: Array<Maybe<Chat>>;
+};
+
+
+export type QueryChatArgs = {
+  id: Scalars['ID'];
 };
 
 export type User = {
@@ -178,7 +185,7 @@ export type MessageResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  chats?: Resolver<Array<Maybe<ResolversTypes['Chat']>>, ParentType, ContextType>;
+  chat?: Resolver<Array<Maybe<ResolversTypes['Chat']>>, ParentType, ContextType, RequireFields<QueryChatArgs, 'id'>>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {

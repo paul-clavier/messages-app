@@ -32,7 +32,7 @@ type Message {
 }
 
 type Query {
-  chats: [Chat]!
+  chat(id: ID!): [Chat]!
 }
 
 type User {
