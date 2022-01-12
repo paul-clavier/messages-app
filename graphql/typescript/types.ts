@@ -50,7 +50,7 @@ export type Message = {
 
 export type Query = {
   __typename?: 'Query';
-  chat: Array<Maybe<Chat>>;
+  chat?: Maybe<Chat>;
 };
 
 
@@ -185,7 +185,7 @@ export type MessageResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  chat?: Resolver<Array<Maybe<ResolversTypes['Chat']>>, ParentType, ContextType, RequireFields<QueryChatArgs, 'id'>>;
+  chat?: Resolver<Maybe<ResolversTypes['Chat']>, ParentType, ContextType, RequireFields<QueryChatArgs, 'id'>>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {

@@ -347,17 +347,9 @@
               }
             ],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Chat",
-                  "ofType": null
-                }
-              }
+              "kind": "OBJECT",
+              "name": "Chat",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
